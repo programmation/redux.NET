@@ -2,17 +2,15 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Redux.Counter.Universal
+namespace Redux.MultiThread.Counter.Universal
 {
-    public sealed partial class App : Application
+    sealed partial class App : Application
     {
-        public static IStore<int> CounterStore { get; private set; }
+        public static IStore<int> Store { get; } = new Store<int>(Reducers.ReduceCounter, 0);
 
         public App()
         {
             InitializeComponent();
-            
-            CounterStore = new Store<int>(CounterReducer.Execute, 0);
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
